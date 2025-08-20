@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decimal Converter</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Background with gradient */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    /* Container Card */
+    .container {
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 320px;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Title */
+    h2 {
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    /* Input and Select */
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #667eea;
+    }
+
+    /* Button */
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    /* Result Box */
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Decimal Number Converter</h2>
+
+    <!-- Decimal Input -->
+    <input type="number" id="decimalInput" placeholder="Enter Decimal Number">
+
+    <!-- Base Selection -->
+    <select id="baseSelect">
+      <option value="2">Binary (Base 2)</option>
+      <option value="8">Octal (Base 8)</option>
+      <option value="16">Hexadecimal (Base 16)</option>
+    </select>
+
+    <!-- Convert Button -->
+    <button onclick="convertNumber()">Convert</button>
+
+    <!-- Result Display -->
+    <div class="result" id="resultBox"></div>
+  </div>
+
+  <script>
+    function convertNumber() {
+      const decimal = parseInt(document.getElementById('decimalInput').value);
+      const base = parseInt(document.getElementById('baseSelect').value);
+      const resultBox = document.getElementById('resultBox');
+
+      if (isNaN(decimal)) {
+        resultBox.textContent = "⚠ Please enter a valid number!";
+        return;
+      }
+
+      // Convert decimal to selected base
+      const converted = decimal.toString(base).toUpperCase();
+      resultBox.textContent = `Converted Value: ${converted}`;
+    }
+  </script>
+
+</body>
+</html>
+
